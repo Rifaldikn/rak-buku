@@ -1,9 +1,8 @@
 <template>
-  <v-app id="inspire">
+  <v-app id="inspire" dark>
     <drawer/>
     <toolbar/>
-    <mainContent class="grey darken-3"/>
-    <!-- <v-footer app></v-footer> -->
+    <mainContent/>
   </v-app>
 </template>
 
@@ -21,9 +20,8 @@ export default {
 *:focus {
   outline: 0 !important;
 }
-
-main {
-  overflow-y: hidden;
+body {
+  min-height: 100vh;
 }
 </style>
 
