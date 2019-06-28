@@ -114,7 +114,7 @@ input {
   font-size: 16px;
   color: #000;
   border-radius: 0;
-  border-botton: 0;
+  border-bottom: 0;
 }
 
 input[type="text"],

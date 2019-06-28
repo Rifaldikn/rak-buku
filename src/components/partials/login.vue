@@ -16,10 +16,10 @@
         <v-container grid-list-md>
           <v-layout wrap>
             <v-flex xs12>
-              <v-text-field label="Username" required></v-text-field>
+              <v-text-field v-model="Email" label="Email" required></v-text-field>
             </v-flex>
             <v-flex xs12>
-              <v-text-field label="Password*" type="password" required></v-text-field>
+              <v-text-field v-model="Password" label="Password*" type="password" required></v-text-field>
             </v-flex>
             <v-flex class="text-xs-center">
               <p>
@@ -33,7 +33,7 @@
             </v-flex>
             <v-flex xs12>
               <div>
-                <v-btn class="grey--text text--darken-4" depressed block color="primary">Login</v-btn>
+                <v-btn class="grey--text text--darken-4" depressed block color="primary" @click="login">Login</v-btn>
               </div>
             </v-flex>
           </v-layout>
@@ -44,10 +44,27 @@
 </template>
 
 <script>
+import firebase from "firebase";
+
 export default {
   name: "login",
-  data: () => ({
-    dialog: false
-  })
+  data(){
+    return{
+      Email:"",
+      Password:"",
+    }
+  },
+  methods: {
+    login: function(){
+      firebase.auth().signInWithEmailAndPassword(this.Email, this.Password).then(
+        function(user){
+          alert("Login successful")
+        },
+        function(err){
+          alert("Oops. " + err.message)
+        }
+      )
+    }
+  }
 };
 </script>

@@ -16,13 +16,10 @@
         <v-container grid-list-md>
           <v-layout wrap>
             <v-flex xs12>
-              <v-text-field label="Username" required></v-text-field>
+              <v-text-field v-model="Email" label="Email" required></v-text-field>
             </v-flex>
             <v-flex xs12>
-              <v-text-field label="Email*" required></v-text-field>
-            </v-flex>
-            <v-flex xs12>
-              <v-text-field label="Password*" type="password" required></v-text-field>
+              <v-text-field v-model="Password" label="Password*" type="password" required></v-text-field>
             </v-flex>
             <v-flex class="text-xs-center">
               <p>
@@ -42,7 +39,7 @@
             </v-flex>
             <v-flex xs12>
               <div>
-                <v-btn class="grey--text text--darken-4" depressed block color="primary">Sign Up</v-btn>
+                <v-btn class="grey--text text--darken-4" depressed block color="primary" @click="signUp">Sign Up</v-btn>
               </div>
             </v-flex>
           </v-layout>
@@ -54,10 +51,28 @@
 
 
 <script>
+import firebase from "firebase";
+
 export default {
-  name: "signup",
-  data: () => ({
-    dialog: false
-  })
+  name: "signUp",
+  data(){
+    return{
+      Email:"",
+      Password:"",
+    }
+  },
+   methods:{
+     signUp: function(){
+       firebase.auth().createUserWithEmailAndPassword(this.Email, this.Password).then(
+         function (user){
+           alert("Account successfully created")
+         },
+         function (err){
+           alert("Oops. " + err.message)
+         }
+       )
+     }
+  }
 };
+ 
 </script>
