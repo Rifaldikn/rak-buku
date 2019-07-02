@@ -60,6 +60,7 @@
 
 
 <script>
+
 export default {
   name: "signup",
   data: () => ({
@@ -76,4 +77,5 @@ export default {
     }
   }
 };
+ 
 </script>
