@@ -20,8 +20,8 @@
     ></v-text-field>
     <v-spacer></v-spacer>
     <!-- <v-btn outline round dark>Sign Up</v-btn> -->
-    <signup/>
-    <login/>
+    <signup />
+    <login />
   </v-toolbar>
 </template>
 
@@ -36,7 +36,8 @@ export default {
     login
   },
   data: () => ({
-    dialog: false
+    dialog: false,
+   
   }),
   methods: {
     ...mapMutations("app", ["setDrawer", "toggleDrawer"]),
@@ -45,7 +46,8 @@ export default {
     },
     onClick() {
       //
-    }
+    },
+   
   }
 };
 </script>

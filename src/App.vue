@@ -1,8 +1,8 @@
 <template>
   <v-app id="inspire" dark>
-    <drawer/>
-    <toolbar/>
-    <mainContent/>
+    <drawer />
+    <toolbar />
+    <mainContent />
   </v-app>
 </template>
 

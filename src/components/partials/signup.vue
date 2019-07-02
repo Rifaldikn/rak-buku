@@ -16,13 +16,13 @@
         <v-container grid-list-md>
           <v-layout wrap>
             <v-flex xs12>
-              <v-text-field label="Username" required></v-text-field>
+              <v-text-field label="Username" required v-model="userInfo.username"></v-text-field>
             </v-flex>
             <v-flex xs12>
-              <v-text-field label="Email*" required></v-text-field>
+              <v-text-field label="Email*" required v-model="userInfo.email"></v-text-field>
             </v-flex>
             <v-flex xs12>
-              <v-text-field label="Password*" type="password" required></v-text-field>
+              <v-text-field label="Password*" type="password" required v-model="userInfo.password"></v-text-field>
             </v-flex>
             <v-flex class="text-xs-center">
               <p>
@@ -42,7 +42,13 @@
             </v-flex>
             <v-flex xs12>
               <div>
-                <v-btn class="grey--text text--darken-4" depressed block color="primary">Sign Up</v-btn>
+                <v-btn
+                  class="grey--text text--darken-4"
+                  depressed
+                  block
+                  color="primary"
+                  @click="createNewAccount()"
+                >Sign Up</v-btn>
               </div>
             </v-flex>
           </v-layout>
@@ -57,7 +63,17 @@
 export default {
   name: "signup",
   data: () => ({
-    dialog: false
-  })
+    dialog: false,
+    userInfo: {
+      username: null,
+      password: null,
+      email: null
+    }
+  }),
+  methods: {
+    createNewAccount() {
+      this.$store.dispatch("users/createNewAccount", this.userInfo);
+    }
+  }
 };
 </script>

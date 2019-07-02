@@ -23,7 +23,7 @@
           </v-layout>
 
           <v-layout wrap class="item-multiple-list">
-            <hooper :infiniteScroll="true" :itemsToShow="6" style="height: auto">
+            <hooper  :itemsToShow="6" style="height: auto">
               <slide v-for="i in 10">
                 <div>
                   <v-flex pa-2>
