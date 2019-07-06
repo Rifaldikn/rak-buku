@@ -25,7 +25,9 @@
           <template v-slot:activator>
             <v-list-tile>
               <v-list-tile-content>
-                <v-list-tile-title>{{ item.text }}</v-list-tile-title>
+                <router-link :to="item.text">
+                  <v-list-tile-title>{{ item.text }}</v-list-tile-title>
+                </router-link>
               </v-list-tile-content>
             </v-list-tile>
           </template>

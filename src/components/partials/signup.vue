@@ -73,7 +73,7 @@ export default {
   }),
   methods: {
     createNewAccount() {
-      this.$store.dispatch("users/createNewAccount", this.userInfo);
+      this.$store.dispatch("users/createNewAccountWithEmail", this.userInfo);
     }
   }
 };

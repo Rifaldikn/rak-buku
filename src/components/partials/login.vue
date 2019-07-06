@@ -33,7 +33,13 @@
             </v-flex>
             <v-flex xs12>
               <div>
-                <v-btn class="grey--text text--darken-4" depressed block color="primary" @click="login">Login</v-btn>
+                <v-btn
+                  class="grey--text text--darken-4"
+                  depressed
+                  block
+                  color="primary"
+                  @click="login"
+                >Login</v-btn>
               </div>
             </v-flex>
           </v-layout>
@@ -44,26 +50,21 @@
 </template>
 
 <script>
-import firebase from "firebase";
-
+import { userInfo } from "os";
 export default {
   name: "login",
-  data(){
-    return{
-      Email:"",
-      Password:"",
-    }
+  data() {
+    return {
+      userInfo: {
+        email: null,
+        password: null
+      },
+      dialog: false
+    };
   },
   methods: {
-    login: function(){
-      firebase.auth().signInWithEmailAndPassword(this.Email, this.Password).then(
-        function(user){
-          alert("Login successful")
-        },
-        function(err){
-          alert("Oops. " + err.message)
-        }
-      )
+    login() {
+      this.$store.dispatch("users/loginWithEmail", userInfo);
     }
   }
 };

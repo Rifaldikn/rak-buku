@@ -9,12 +9,7 @@
 // Lib imports
 import Vue from "vue";
 import Vuex from "vuex";
-import * as firebase from "firebase/app";
 
-// Add the Firebase products that you want to use
-import "firebase/auth";
-import "firebase/firestore";
-import "firebase/storage";
 
 // Store functionality
 import actions from "./actions";
