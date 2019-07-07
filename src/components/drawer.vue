@@ -9,12 +9,14 @@
     width="200"
   >
     <v-list v-for="item in items" :key="item.text">
-      <v-list-tile >
-        <v-list-tile-action router to="/gwp">
-          <v-icon>{{item.icon}}</v-icon>
-        </v-list-tile-action>
-        <v-list-tile-title>{{item.text}}</v-list-tile-title>
-      </v-list-tile>
+      <router-link :to="item.path">
+        <v-list-tile>
+          <v-list-tile-action>
+            <v-icon>{{item.icon}}</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-title>{{item.text}}</v-list-tile-title>
+        </v-list-tile>
+      </router-link>
     </v-list>
   </v-navigation-drawer>
 </template>
