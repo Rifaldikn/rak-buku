@@ -3,16 +3,17 @@ import "firebase/auth";
 
 export default {
   createNewAccountWithEmail({ commit }, userInfo) {
-    // return new Promises((resolve, reject) => {
     firebase
       .auth()
       .createUserWithEmailAndPassword(userInfo.email, userInfo.password)
       .catch(function(error) {
-        // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
         // ...
         console.log({ errorCode, errorMessage });
+        // commit(setErrorMessage(errorMessage));
+        commit("app/setErrorMessage", errorMessage, { root: true });
+        commit("app/toggleSnackbar", null, { root: true });
       });
   },
   loginWithEmail({ commit }, userInfo) {
@@ -20,10 +21,10 @@ export default {
       .auth()
       .signInWithEmailAndPassword(userInfo.email, userInfo.password)
       .catch(function(error) {
-        // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
         // ...
+        console.log({ errorCode, errorMessage });
       });
   }
 };

@@ -1,3 +1,5 @@
 export default {
-  drawer: null
+  drawer: null,
+  errorMessage: null,
+  snackbar: false
 };

@@ -16,10 +16,10 @@
         <v-container grid-list-md>
           <v-layout wrap>
             <v-flex xs12>
-              <v-text-field v-model="Email" label="Email" required></v-text-field>
+              <v-text-field v-model="userInfo.email" label="Email" required></v-text-field>
             </v-flex>
             <v-flex xs12>
-              <v-text-field v-model="Password" label="Password*" type="password" required></v-text-field>
+              <v-text-field v-model="userInfo.password" label="Password*" type="password" required></v-text-field>
             </v-flex>
             <v-flex class="text-xs-center">
               <p>
@@ -64,7 +64,7 @@ export default {
   },
   methods: {
     login() {
-      this.$store.dispatch("users/loginWithEmail", userInfo);
+      this.$store.dispatch("users/loginWithEmail", this.userInfo);
     }
   }
 };
