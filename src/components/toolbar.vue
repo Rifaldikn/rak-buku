@@ -20,13 +20,16 @@
     ></v-text-field>
     <v-spacer></v-spacer>
     <!-- <v-btn outline round dark>Sign Up</v-btn> -->
-    <signup />
-    <login />
+    <div v-if="loginStatus == false">
+      <signup />
+      <login />
+    </div>
+    <v-btn outline round dark @click="logout()" v-else>Log Out</v-btn>
   </v-toolbar>
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import { mapMutations, mapGetters } from "vuex";
 import signup from "./partials/signup";
 import login from "./partials/login";
 
@@ -36,18 +39,19 @@ export default {
     login
   },
   data: () => ({
-    dialog: false,
-   
+    dialog: false
   }),
+  computed: {
+    ...mapGetters("app", ["loginStatus"])
+  },
   methods: {
     ...mapMutations("app", ["setDrawer", "toggleDrawer"]),
     onClickBtn() {
       this.setDrawer(!this.$store.state.app.drawer);
     },
-    onClick() {
-      //
-    },
-   
+    logout() {
+      this.$store.dispatch("users/logoutUser");
+    }
   }
 };
 </script>

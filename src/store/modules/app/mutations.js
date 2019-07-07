@@ -6,5 +6,7 @@ export default {
   setColor: set("color"),
   toggleDrawer: toggle("drawer"),
   setErrorMessage: set("errorMessage"),
-  toggleSnackbar: toggle("snackbar")
+  toggleSnackbar: toggle("snackbar"),
+  setUser: set("userInfo"),
+  setLoginStatus: toggle("loginStatus") 
 };

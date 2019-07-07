@@ -1,4 +1,4 @@
-import Vue from "vue"
+import Vue from "vue";
 
 // Components
 import "./components";
@@ -7,7 +7,7 @@ import "./components";
 import "./plugins";
 
 // Sync router with store
-import { sync } from 'vuex-router-sync'
+import { sync } from "vuex-router-sync";
 
 // Application imports
 import App from "./App";

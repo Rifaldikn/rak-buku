@@ -6,8 +6,15 @@ export default [
     name: "Dashboard"
   },
   {
-    path: "/publisher",
-    view: "Home",
-    name: "Publisher"
+    path: "/publisher/bookManager",
+    view: "Booklist",
+    name: "Book Manager",
+    children: [
+      {
+        path: "/publisher/bookManager/add",
+        view: "Booklist",
+        name: "Add Book"
+      }
+    ]
   }
 ];

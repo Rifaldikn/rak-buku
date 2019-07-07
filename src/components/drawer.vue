@@ -8,50 +8,70 @@
     dark
     width="200"
   >
-    <v-list v-for="item in items" :key="item.text">
-      <router-link :to="item.path">
-        <v-list-tile>
-          <v-list-tile-action>
-            <v-icon>{{item.icon}}</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-title>{{item.text}}</v-list-tile-title>
-        </v-list-tile>
-      </router-link>
+    <v-list v-for="item in items">
+      <!-- <router-link> -->
+
+      <v-list-tile router :to="item.path" :key="item.path" v-if="loginStatus != true">
+        <v-subheader v-if="item.heading">{{ item.heading }}</v-subheader>
+        <v-list-tile-action>
+          <v-icon>{{item.icon}}</v-icon>
+        </v-list-tile-action>
+        <v-list-tile-title>{{item.text}}</v-list-tile-title>
+      </v-list-tile>
+      <!-- </router-link> -->
     </v-list>
   </v-navigation-drawer>
 </template>
 
 <script>
-import { mapMutations, mapState } from "vuex";
+import { mapMutations, mapState, mapGetters } from "vuex";
 export default {
   name: "App",
   data: () => ({
     items: [
-      // { icon: "search", text: "Discover", link: { path: "/" } },
-      // {
-      //   icon: "library_books",
-      //   text: "My Library",
-      //   link: { path: "/mylibrary" }
-      // },
-      // { heading: "Browse" },
-      // { icon: "people", text: "Authors", link: "/mylibrary:Authors" },
-      // { icon: "category", text: "Categories", link: "/" },
-      // { icon: "show_chart", text: "Charts", link: "/" },
-      // { heading: "Publisher" },
+      {
+        icon: "search",
+        text: "Discover",
+        path: "/"
+      },
+      {
+        icon: "library_books",
+        text: "My Library",
+        path: "/mylibrary"
+      },
+      {
+        heading: "Browse"
+      },
+      {
+        icon: "people",
+        text: "Authors",
+        path: "/mylibrary:Authors"
+      },
+      {
+        icon: "category",
+        text: "Categories",
+        path: "/"
+      },
       {
         icon: "show_chart",
-        text: "Add Book",
-        path: "/publisher/addbook"
+        text: "Charts",
+        path: "/"
+      },
+      {
+        heading: "Publisher",
+        role: "publisher"
       },
       {
         icon: "show_chart",
         text: "Books Manager",
-        path: "/publisher/books"
+        path: "/publisher/bookManager",
+        role: "publisher"
       }
     ]
   }),
   computed: {
     ...mapState("app", ["drawer"]),
+    ...mapGetters("app", ["loginStatus"]),
     navDrawer: {
       get() {
         return this.$store.state.app.drawer;

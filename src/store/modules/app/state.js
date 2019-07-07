@@ -1,5 +1,7 @@
 export default {
   drawer: null,
   errorMessage: null,
-  snackbar: false
+  snackbar: false,
+  userInfo: null,
+  loginStatus: false
 };
