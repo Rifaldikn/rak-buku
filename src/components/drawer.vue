@@ -11,7 +11,12 @@
     <v-list v-for="item in items">
       <!-- <router-link> -->
 
-      <v-list-tile router :to="item.path" :key="item.path" v-if="loginStatus != true">
+      <v-list-tile
+        router
+        :to="item.path"
+        :key="item.path"
+        v-if="loginStatus == true || item.role != 'publisher' "
+      >
         <v-subheader v-if="item.heading">{{ item.heading }}</v-subheader>
         <v-list-tile-action>
           <v-icon>{{item.icon}}</v-icon>

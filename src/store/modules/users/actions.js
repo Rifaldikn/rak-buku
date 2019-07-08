@@ -1,6 +1,6 @@
 import firebase from "firebase/app";
 import "firebase/auth";
-import store from '@/store'
+import store from "@/store";
 
 export default {
   createNewAccountWithEmail({ commit, dispatch }, userInfo) {
@@ -8,7 +8,22 @@ export default {
       .auth()
       .createUserWithEmailAndPassword(userInfo.email, userInfo.password)
       .then(user => {
-        dispatch("users/loginWithEmail", userInfo, { root: true });
+        var user = firebase.auth().currentUser;
+
+        user
+          .updateProfile({
+            displayName: userInfo.username
+            // photoURL: "https://example.com/jane-q-user/profile.jpg"
+          })
+          .then(function() {
+            // Update successful.
+            dispatch("users/loginWithEmail", userInfo, { root: true });
+            console.log(user);
+          })
+          .catch(function(error) {
+            // An error happened.
+          });
+        // console.log(user);
       })
       .catch(function(error) {
         // Handle Errors here.
@@ -16,7 +31,7 @@ export default {
         var errorMessage = error.message;
         // [START_EXCLUDE]
         commit("app/setErrorMessage", errorMessage, { root: true });
-        commit("app/toggleSnackbar", null, { root: true });
+        store.commit("app/toggleSnackbar", { root: true });
         console.log(error);
       });
   },

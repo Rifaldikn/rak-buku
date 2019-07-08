@@ -16,5 +16,10 @@ export default [
         name: "Add Book"
       }
     ]
+  },
+  {
+    name: "BookDetail",
+    path: "/bookDetail/:id",
+    view: "Dashboard"
   }
 ];

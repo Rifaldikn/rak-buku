@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-toolbar flat>
-      <v-toolbar-title>Publisher Name</v-toolbar-title>
+      <v-toolbar-title>{{userData.displayName}}</v-toolbar-title>
       <v-divider class="mx-2" inset vertical></v-divider>
       <v-spacer></v-spacer>
       <v-dialog v-model="dialog" max-width="700px">
@@ -38,7 +38,7 @@
     </v-toolbar>
     <v-data-table :headers="headers" :items="desserts" class="elevation-1">
       <template v-slot:items="props">
-        <router-link to="/bookDetail/ggwp">
+        <router-link :to="{name: 'BookDetail', params: {id: props.item.serialNumberBook}}">
           <td>{{ props.item.bookTitle }}</td>
         </router-link>
         <td class="text-xs-right">{{ props.item.author }}</td>
@@ -56,6 +56,8 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
+
 export default {
   data: () => ({
     dialog: false,
@@ -103,7 +105,8 @@ export default {
   computed: {
     formTitle() {
       return this.editedIndex === -1 ? "Add new Book" : "Edit Book";
-    }
+    },
+    ...mapGetters("app", ["userData"])
   },
 
   watch: {
@@ -118,15 +121,7 @@ export default {
 
   methods: {
     initialize() {
-      this.desserts = [
-        {
-          bookTitle: "",
-          publishedDate: "",
-          serialNumberBook: 0,
-          pages: 0,
-          genres: ""
-        }
-      ];
+      this.$store.dispatch("books/getBookList");
     },
 
     editItem(item) {
@@ -154,6 +149,7 @@ export default {
         Object.assign(this.desserts[this.editedIndex], this.editedItem);
       } else {
         this.desserts.push(this.editedItem);
+        this.$store.dispatch("books/addNewBook", this.editedItem);
       }
       this.close();
     }
